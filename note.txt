@@ -1,0 +1,85 @@
+class Biberon {
+	protected:
+		int heure_de_prise,
+		volume_bib,
+		intervalle_de_rappel,
+		quantité_min,
+		quantité_max;
+		bool oui_bib_pris,
+		vomi;
+public:
+	Biberon();
+	~Biberon();
+	Biberon(int hour, int volume, int rappel,int Qmin,int Qmax);
+	void add_rappel(int);
+	void add_hour(int,int);
+	void regurgitation(bool);
+};
+
+
+procedure add_hour(int heure de prise, int intervalle)
+preconditions: biberon doit être initialisés
+données: heure de prise, intervalle
+données resultats: intervalle de rappel
+variables locales: non
+
+debut
+	si heure <= 23 et heure de prise + intervalle de rappel < 23 alors
+		afficher("dans cb de temps voulez vous ajouter un bib")
+		saisir(heure rajouter);
+	si (oui_bib = vraie) alors
+		heure de prise += intervalle de prise
+	fin si
+
+fin
+
+
+ou
+
+debut 
+
+	si(oui_bib_pris = vrai ) alors
+		afficher("dans combien de temps souhaiter vous donner le prochain bib")
+		saisir(intervalle)
+	finsi
+
+fin
+
+procedure rajoutIngerer(qIngere)
+
+donnees/ resultats : quantité ingere
+precondition : oui bib = vrai,
+
+debut
+	afficher(donner la q ingeree),
+	saisir (quantite ingeree),
+fin
+
+Procedure Rappel(int intervalle de rappel, int heure de prise )
+Precondition : objet initialisé
+donnes: heure de rappel, intervalle de rappel
+donnees /resultat
+Variables locales:
+
+debut
+	si heure actu = heure de rappel + intervalle de rappel) alors
+		afficher("c'est l'heure")
+
+fin
+
+on veut maintenant prendre en compte le fait que le bb ait regurgité
+
+est ce une fonction ou une procédure ?
+
+bool regurgiter(bool aRegurgité, int qlait perdu,)
+precondition : oui bib
+donnees : aregurigite, q lait perdu
+donnees / resultat: 
+Variables locales : int qrestant 
+debut afficher ("a t il vomi ? Si oui tapez 1 sinon 0")
+	saisir(aregurgité)
+	si aregurgite alors
+		afficher("donner la q  restant")
+		saisir(qrestant)
+		si (qmin > qrestant) alors
+			afficher("Ajouter du lait svp")
