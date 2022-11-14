@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="Biberon.cpp" />
     <ClCompile Include="Main.cpp" />
+<<<<<<< HEAD
     <ClCompile Include="list.cpp" />
     <ClCompile Include="product.cpp" />
   </ItemGroup>
@@ -28,6 +29,13 @@
     <ClInclude Include="Biberon.h" />
     <ClInclude Include="list.h" />
     <ClInclude Include="product.h" />
+=======
+    <ClCompile Include="Window.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Biberon.h" />
+    <ClInclude Include="Window.h" />
+>>>>>>> 42b546758654b77fca561018425287a840f54cf9
   </ItemGroup>
   <ItemGroup>
     <Text Include="note.txt" />
