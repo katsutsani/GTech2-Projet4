@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="Biberon.cpp" />
     <ClCompile Include="Main.cpp" />
+<<<<<<< HEAD
     <ClCompile Include="list.cpp" />
     <ClCompile Include="product.cpp" />
     <ClCompile Include="Window.cpp" />
