@@ -1,67 +1,45 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="Source Files\cpp">
-      <UniqueIdentifier>{179bb682-36d3-474e-a7ad-1d96c5fb0afe}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\hpp">
-      <UniqueIdentifier>{ff34cb78-968e-4fd0-a120-b9c9e2ffd780}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Main.cpp">
-      <Filter>Source Files\cpp</Filter>
-    </ClCompile>
     <ClCompile Include="Biberon.cpp">
-      <Filter>Source Files\cpp</Filter>
+      <Filter>cpp</Filter>
     </ClCompile>
-<<<<<<< HEAD
     <ClCompile Include="list.cpp">
-      <Filter>Source Files\cpp</Filter>
+      <Filter>cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>cpp</Filter>
     </ClCompile>
     <ClCompile Include="product.cpp">
-=======
-    <ClCompile Include="Window.cpp">
->>>>>>> 42b546758654b77fca561018425287a840f54cf9
-      <Filter>Source Files\cpp</Filter>
+      <Filter>cpp</Filter>
     </ClCompile>
     <ClCompile Include="Window.cpp">
-      <Filter>Source Files\cpp</Filter>
+      <Filter>cpp</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Biberon.h">
-      <Filter>Source Files\hpp</Filter>
+      <Filter>h</Filter>
     </ClInclude>
-<<<<<<< HEAD
     <ClInclude Include="list.h">
-      <Filter>Source Files\hpp</Filter>
+      <Filter>h</Filter>
     </ClInclude>
     <ClInclude Include="product.h">
-=======
-    <ClInclude Include="Window.h">
->>>>>>> 42b546758654b77fca561018425287a840f54cf9
-      <Filter>Source Files\hpp</Filter>
+      <Filter>h</Filter>
     </ClInclude>
     <ClInclude Include="Window.h">
-      <Filter>Source Files\hpp</Filter>
+      <Filter>h</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="note.txt">
-      <Filter>Source Files</Filter>
-    </Text>
+    <Text Include="note.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="cpp">
+      <UniqueIdentifier>{a62c0a0a-5016-4176-9604-c4b26164c94a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="h">
+      <UniqueIdentifier>{8e36f528-294b-49b2-ae7a-6859e4ba6c79}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

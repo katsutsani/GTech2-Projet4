@@ -1,4 +1,4 @@
-#pragma once
+/*#pragma once
 #include <vector>
 #include "product.h"
 
@@ -10,4 +10,4 @@ class list {
 		~list();
 		void addToThelist(product, int);
 		void removeToThelist(product);
-};
+};*/
