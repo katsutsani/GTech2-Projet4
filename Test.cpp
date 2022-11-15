@@ -1,4 +1,4 @@
-#include "Window.h"
+/*#include "Window.h"
 #include "list.h"
 #include "product.h"
 #include <iostream>
@@ -23,4 +23,4 @@ int main(int argc, char* args[])
     shoplist.removeToThelist("test");
     shoplist.showlist();
     return 0;
-}
+}*/

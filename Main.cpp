@@ -1,5 +1,5 @@
 
-/*#include "Window.h"
+#include "Window.h"
 #include <iostream>
 #include <SDL.h>
 #include <stdio.h>
@@ -14,4 +14,4 @@ int main(int argc, char* args[])
         maFenetre.Init("Jesus", 680, 420);
     
     return 0;
-}*/
+}
