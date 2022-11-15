@@ -2,13 +2,15 @@
 
 class product {
 protected:
-	char name;
+	
 	int quantity;
 
 public:
-	product();
+	const char* name;
 	~product();
-	product(char, int);
+	product(const char*, int);
 	void removeProduct();
 	void changeQuantity(int, char);
+	const char* getName();
+	void showProductName();
 };

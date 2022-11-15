@@ -16,6 +16,9 @@
     <ClCompile Include="Window.cpp">
       <Filter>cpp</Filter>
     </ClCompile>
+    <ClCompile Include="Test.cpp">
+      <Filter>cpp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Biberon.h">
