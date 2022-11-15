@@ -33,6 +33,9 @@
     <ClCompile Include="product.cpp">
       <Filter>Source Files\cpp</Filter>
     </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>Source Files\cpp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Biberon.h">
@@ -42,6 +45,9 @@
       <Filter>Source Files\hpp</Filter>
     </ClInclude>
     <ClInclude Include="product.h">
+      <Filter>Source Files\hpp</Filter>
+    </ClInclude>
+    <ClInclude Include="Window.h">
       <Filter>Source Files\hpp</Filter>
     </ClInclude>
   </ItemGroup>
