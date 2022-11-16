@@ -1,4 +1,4 @@
-#include "Window.h"
+/*#include "Window.h"
 #include "list.h"
 #include "product.h"
 #include <iostream>
@@ -39,7 +39,7 @@ int main(int argc, char* args[])
 }
 
 
-/*for (auto i = listProduct.begin(); i != listProduct.end(); i++)
+for (auto i = listProduct.begin(); i != listProduct.end(); i++)
 {
     cout << i->second. << endl;
 }*/
