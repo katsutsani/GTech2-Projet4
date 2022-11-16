@@ -1,5 +1,5 @@
 
-#include "Window.h"
+/*#include "Window.h"
 #include "Button.h"
 #include <iostream>
 #include <SDL.h>
@@ -23,4 +23,4 @@ int main(int argc, char* args[])
 
     maFenetre.~MainSDLWindow();
     return 0;
-}
+}*/
