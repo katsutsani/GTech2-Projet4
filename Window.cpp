@@ -14,7 +14,7 @@ SDL_Renderer* MainSDLWindow::GetRenderer(void){
 
 void MainSDLWindow::createButton()
 {
-    this->buttonList.push_back(newButton::newButton(this->renderer, 0, 0, 32, 32))
+    this->buttonList.push_back(newButton::newButton(this->renderer, 0, 0, 32, 32));
 }
 
 void MainSDLWindow::render()

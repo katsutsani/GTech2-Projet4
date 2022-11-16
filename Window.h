@@ -2,6 +2,10 @@
 #include <SDL.h>
 #include <stdio.h>
 #include <vector>
+#include "Button.h"
+
+using namespace std;
+
 
 class MainSDLWindow
 {
@@ -23,6 +27,5 @@ public:
 private:
 	SDL_Window* window;
 	SDL_Renderer* renderer;
-
 	vector<newButton> buttonList;
 };

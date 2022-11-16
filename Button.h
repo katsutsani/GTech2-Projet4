@@ -10,7 +10,6 @@ public:
 	void render();
 private:
 	SDL_Renderer* renderer;
-
 	SDL_Rect rect;
 };
 
