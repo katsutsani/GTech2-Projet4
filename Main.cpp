@@ -4,6 +4,7 @@
 #include <iostream>
 #include <SDL.h>
 #include <stdio.h>
+#include <SDL_ttf.h>
 
 using namespace std;
 
@@ -12,13 +13,12 @@ using namespace std;
 int main(int argc, char* args[])
 {
     MainSDLWindow maFenetre;
-    maFenetre.Init("Jesus", 680, 420);
-    newButton course(maFenetre.GetRenderer(), 100, 50, 50, 50);
-    newButton tableau(maFenetre.GetRenderer(), 50, 50, 50, 50);
+    maFenetre.Init("Baby's App :D", 820, 560); // Window size initiation
 
-    while (maFenetre.isRunning) {
+    while (maFenetre.isRunning) {  // Main loop
         maFenetre.handleEvent();
         maFenetre.render();
+        maFenetre.createButton();
     }
 
     maFenetre.~MainSDLWindow();
