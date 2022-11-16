@@ -16,7 +16,11 @@
     <ClCompile Include="Window.cpp">
       <Filter>cpp</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="Button.cpp">
+=======
+    <ClCompile Include="Test.cpp">
+>>>>>>> 49a605710fd7f7381aa6b6c5678dbaa19ddf5557
       <Filter>cpp</Filter>
     </ClCompile>
   </ItemGroup>
