@@ -16,7 +16,16 @@ list::~list() {
 }
 
 void list::addToThelist(product name, int quantity) {
-	this->liste.push_back(name);
+	for (int i = 0; i < liste.size(); i++) {
+		const char* productName = liste[i].getName();
+		if (productName == name.getName()) {
+			cout << "cet article existe déjà";
+		}
+		else {
+			this->liste.push_back(name);
+		}
+	}
+	
 }
 
 void list::removeToThelist(const char* name) {
