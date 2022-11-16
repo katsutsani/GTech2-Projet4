@@ -1,12 +1,51 @@
 #include <SDL.h>
 #include "Window.h"
+#include "Button.h"
 
 using namespace std;
 
-/*SDL_Renderer* MainSDLWindow::GetRenderer(void)
-{
+
+
+SDL_Renderer* MainSDLWindow::GetRenderer(void){
+
     return this->renderer;
-}*/
+
+}
+
+void MainSDLWindow::createButton()
+{
+    this->buttonList.push_back(newButton::newButton(this->renderer, 0, 0, 32, 32))
+}
+
+void MainSDLWindow::render()
+{
+    SDL_RenderClear(this->renderer);
+
+    for (auto i = 0; i < buttonList.size(); i++)
+    {
+        this->buttonList[i].render();
+    }
+
+    SDL_RenderPresent(this->renderer);
+}
+
+void MainSDLWindow::handleEvent()
+{
+    SDL_Event e;
+    while (SDL_PollEvent(&e)) 
+    {
+        switch (e.type)
+        {
+        case SDL_QUIT:
+            this->isRunning = false;
+            break;
+        case SDL_MOUSEBUTTONDOWN:
+            break;
+        default:
+            break;
+        }
+    }
+}
 
 MainSDLWindow::MainSDLWindow()
 {
@@ -38,12 +77,6 @@ int MainSDLWindow::Init(const char* Jesus, int width, int height)
     }
     this->renderer = SDL_CreateRenderer(this->window, -1, SDL_RENDERER_SOFTWARE);
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-
-    SDL_Event e; bool quit = false; while (quit == false) {
-        while (SDL_PollEvent(&e)) {
-            if (e.type == SDL_QUIT) quit = true;
-        }
-    }
 
     return 0;
 }

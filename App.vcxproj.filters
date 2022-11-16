@@ -16,6 +16,9 @@
     <ClCompile Include="Window.cpp">
       <Filter>cpp</Filter>
     </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>cpp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Biberon.h">
@@ -28,6 +31,9 @@
       <Filter>h</Filter>
     </ClInclude>
     <ClInclude Include="Window.h">
+      <Filter>h</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
       <Filter>h</Filter>
     </ClInclude>
   </ItemGroup>
