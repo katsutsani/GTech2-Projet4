@@ -22,7 +22,6 @@ void shoplist::addToThelist(shoplist shoplist,const char* name, int quantity) {
 	if (liste.size() == 0) {
 		this->listProduct[name].changeToBuyQuantity(shoplist, quantity, '+');
 		this->liste.push_back(&this->listProduct[name]);
-		cout << this->listProduct[name].getName() << " a ete ajoute a la liste de course" << endl;
 	}
 	else {
 		for (int i = 0; i < liste.size(); i++) {
@@ -53,6 +52,10 @@ void shoplist::removeToThelist(const char* name) {
 			this->liste.erase(this->liste.begin() + i);
 		}
 	}
+}
+
+vector<product*> shoplist::getShoplist() {
+	return this->liste;
 }
 
 void shoplist::showlist() {

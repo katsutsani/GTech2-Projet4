@@ -24,6 +24,10 @@ void product::removeProduct() {
 	this->~product();
 };
 
+int product::getQuantityToBuy() {
+	return this->QuantityToBuy;
+}
+
 void product::changeQuantity(int quantity, char signe) {
 	switch (signe) {
 	case '+':
@@ -42,7 +46,7 @@ int product::getQuantity() {
 }
 
 const char* product::getName() {
-	return name;
+	return this->name;
 }
 
 void product::showProductName() {

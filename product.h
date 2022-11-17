@@ -16,6 +16,7 @@ public:
 	void changeQuantity(int, char);
 	const char* getName();
 	int getQuantity();
+	int getQuantityToBuy();
 	void showProductName();
 	void changeToBuyQuantity(shoplist& liste,int value,const char signe);
 };

@@ -15,6 +15,7 @@ class shoplist {
 		void addToThelist(shoplist,const char*, int);
 		void removeToThelist(const char*);
 		void showlist();
+		vector<product*> getShoplist();
 		void changeQuantity(shoplist&,const char*,int,const char);
 		void createProduct(const char*, int);
 };

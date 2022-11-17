@@ -28,7 +28,7 @@ void MainSDLWindow::createButton()
 	this->buttonList.push_back(newButton::newButton(this->renderer, 400, 0, 900, 900, []() {cout << "OK5" << endl; })); //HALF MENU
 }
 
-void MainSDLWindow::render(int page) //Renders button list
+void MainSDLWindow::render(int page, shoplist shoplist) //Renders button list
 {
 	time_t seconds;
 	struct tm instant;
@@ -45,9 +45,28 @@ void MainSDLWindow::render(int page) //Renders button list
 	{
 		this->buttonList[i].render(); // Add buttons to list
 	}
-
-	this->font = TTF_OpenFont("Fonts/LTComical.ttf", 50);
 	SDL_Color color = { 0, 0, 0 };
+	if (page == 0) {
+		this->font = TTF_OpenFont("Fonts/LTComical.ttf", 50);
+		this->surface = TTF_RenderText_Solid(this->font, // Clock
+			Timer.c_str(), color);
+		this->texture = SDL_CreateTextureFromSurface(this->renderer, this->surface);
+		SDL_Rect geste = { 470,110,this->surface->w,this->surface->h };
+		SDL_RenderCopy(this->renderer, this->texture, NULL, &geste);
+		SDL_FreeSurface(this->surface);
+		SDL_DestroyTexture(this->texture);
+	}
+	else {
+		this->fontText = TTF_OpenFont("Fonts/LTComical.ttf", 20);
+		this->surface = TTF_RenderText_Solid(this->fontText, // Clock
+			Timer.c_str(), color);
+		this->texture = SDL_CreateTextureFromSurface(this->renderer, this->surface);
+		SDL_Rect geste = { 455,25,this->surface->w,this->surface->h };
+		SDL_RenderCopy(this->renderer, this->texture, NULL, &geste);
+		SDL_FreeSurface(this->surface);
+		SDL_DestroyTexture(this->texture);
+	}
+
 	this->surface = TTF_RenderText_Solid(this->font, //Buying list
 		"To-Buy list", color);
 	this->texture = SDL_CreateTextureFromSurface(this->renderer, this->surface);
@@ -80,15 +99,6 @@ void MainSDLWindow::render(int page) //Renders button list
 	SDL_RenderCopy(this->renderer, this->texture, NULL, &leste);
 	SDL_FreeSurface(this->surface);
 	SDL_DestroyTexture(this->texture);
-
-	this->surface = TTF_RenderText_Solid(this->font, // Clock
-		Timer.c_str(), color);
-	this->texture = SDL_CreateTextureFromSurface(this->renderer, this->surface);
-	SDL_Rect geste = { 470,110,this->surface->w,this->surface->h };
-	SDL_RenderCopy(this->renderer, this->texture, NULL, &geste);
-	SDL_FreeSurface(this->surface);
-	SDL_DestroyTexture(this->texture);
-
 	
 	if(page == 0) 
 	{
@@ -99,6 +109,64 @@ void MainSDLWindow::render(int page) //Renders button list
 		SDL_RenderCopy(this->renderer, this->texture, NULL, &oeste);
 		SDL_FreeSurface(this->surface);
 		SDL_DestroyTexture(this->texture);
+	}
+	else if (page == 1) {
+		int ToBuyproduct_X = 455;
+		int ToBuyproduct_y = 75;
+		int ToBuyquantity_x = 755;
+		for (int i = 0; i < shoplist.getShoplist().size(); i++) {
+
+			this->surface = TTF_RenderText_Solid(this->fontText, // Clock message
+				shoplist.getShoplist()[i]->getName(), color);
+			this->texture = SDL_CreateTextureFromSurface(this->renderer, this->surface);
+			SDL_Rect name = { ToBuyproduct_X,ToBuyproduct_y,this->surface->w,this->surface->h };
+			SDL_RenderCopy(this->renderer, this->texture, NULL, &name);
+			SDL_FreeSurface(this->surface);
+			SDL_DestroyTexture(this->texture);
+
+			string quantity = to_string(shoplist.getShoplist()[i]->getQuantityToBuy());
+
+
+			this->surface = TTF_RenderText_Solid(this->fontText, // Clock message
+				quantity.c_str(), color);
+			this->texture = SDL_CreateTextureFromSurface(this->renderer, this->surface);
+			SDL_Rect ShowQuantity = { ToBuyquantity_x,ToBuyproduct_y,this->surface->w,this->surface->h };
+			SDL_RenderCopy(this->renderer, this->texture, NULL, &ShowQuantity);
+			SDL_FreeSurface(this->surface);
+			SDL_DestroyTexture(this->texture);
+
+			ToBuyproduct_y += 30;
+		}
+	}
+	else if (page == 2) {
+		int product_X = 455;
+		int product_y = 75;
+		int quantity_x =755;
+		for (auto i = shoplist.listProduct.begin(); i != shoplist.listProduct.end(); i++)
+		{
+			if (i->second.getQuantity() != 0) {
+				this->surface = TTF_RenderText_Solid(this->fontText, // Clock message
+					i->first, color);
+				this->texture = SDL_CreateTextureFromSurface(this->renderer, this->surface);
+				SDL_Rect name = { product_X,product_y,this->surface->w,this->surface->h };
+				SDL_RenderCopy(this->renderer, this->texture, NULL, &name);
+				SDL_FreeSurface(this->surface);
+				SDL_DestroyTexture(this->texture);
+
+				string quantity = to_string(i->second.getQuantity());
+
+
+				this->surface = TTF_RenderText_Solid(this->fontText, // Clock message
+					quantity.c_str(), color);
+				this->texture = SDL_CreateTextureFromSurface(this->renderer, this->surface);
+				SDL_Rect ShowQuantity = { quantity_x,product_y,this->surface->w,this->surface->h };
+				SDL_RenderCopy(this->renderer, this->texture, NULL, &ShowQuantity);
+				SDL_FreeSurface(this->surface);
+				SDL_DestroyTexture(this->texture);
+
+				product_y += 30;
+			}
+		}
 	}
 		
 
@@ -136,21 +204,18 @@ void MainSDLWindow::handleEvent() // Manage Events
 					{	
 						this->buttonList[i-1].GetCubes();
 
-						switch (i)
-						{case 1:
-
-							break;
-						case 2:
-
-							break;
-						case 3:
-
-							break;
-						case 4:
-
-							break;
-						default:
-							break;
+						if (i == 1)
+						{
+							this->page = 1;
+						}
+						else if (i == 2) {
+							this->page = 2;
+						}
+						else if (i == 3) {
+							this->page = 3;
+						}
+						else if (i == 4) {
+							this->page = 4;
 						}
 					}
 

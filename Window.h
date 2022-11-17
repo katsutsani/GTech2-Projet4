@@ -4,7 +4,9 @@
 #include <vector>
 #include "Button.h"
 #include <SDL_ttf.h>
-
+#include "product.h"
+#include <unordered_map>
+#include "list.h"
 
 using namespace std;
 
@@ -22,7 +24,7 @@ public:
 
 	void handleEvent();
 		
-	void render(int page);
+	void render(int page, shoplist);
 
 	void createButton();
 
@@ -37,6 +39,7 @@ private:
 	SDL_Surface* surface;
 	SDL_Texture* texture;
 	TTF_Font* font;
+	TTF_Font* fontText;
 
 	int mouseX = 0;
 	int mouseY = 0;
