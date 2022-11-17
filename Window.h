@@ -22,12 +22,13 @@ public:
 
 	void handleEvent();
 		
-	void render();
+	void render(int page);
 
 	void createButton();
 
 	void timer();
 
+	int page = 0;
 private: 
 	SDL_Window* window;
 	SDL_Renderer* renderer;

@@ -19,15 +19,16 @@ SDL_Renderer* MainSDLWindow::GetRenderer(void) {  // Gets renderer
 
 void MainSDLWindow::createButton()
 {
-	this->buttonList.push_back(newButton::newButton(this->renderer, 20, 20, 360, 60, []() {})); //FIRST
-	this->buttonList.push_back(newButton::newButton(this->renderer, 20, 130, 360, 60, []() {cout << "OK2" << endl; })); //SECOND
-	this->buttonList.push_back(newButton::newButton(this->renderer, 20, 240, 360, 60, []() {cout << "OK3" << endl; })); //THIRD
-	this->buttonList.push_back(newButton::newButton(this->renderer, 20, 350, 360, 60, []() {cout << "OK4" << endl; })); //FOURTH
+
+	this->buttonList.push_back(newButton::newButton(this->renderer, 20, 20, 360, 60, [](){})); //To-Buy List
+	this->buttonList.push_back(newButton::newButton(this->renderer, 20, 130, 360, 60, []() {cout << "OK2" << endl; })); //Products List
+	this->buttonList.push_back(newButton::newButton(this->renderer, 20, 240, 360, 60, []() {cout << "OK3" << endl; })); //Baby Timer
+	this->buttonList.push_back(newButton::newButton(this->renderer, 20, 350, 360, 60, []() {cout << "OK4" << endl; })); //Baby Fed
 
 	this->buttonList.push_back(newButton::newButton(this->renderer, 400, 0, 900, 900, []() {cout << "OK5" << endl; })); //HALF MENU
 }
 
-void MainSDLWindow::render() //Renders button list
+void MainSDLWindow::render(int page) //Renders button list
 {
 	time_t seconds;
 	struct tm instant;
@@ -88,13 +89,18 @@ void MainSDLWindow::render() //Renders button list
 	SDL_FreeSurface(this->surface);
 	SDL_DestroyTexture(this->texture);
 
-	this->surface = TTF_RenderText_Solid(this->font, // Clock message
-		"Time of the day", color);
-	this->texture = SDL_CreateTextureFromSurface(this->renderer, this->surface);
-	SDL_Rect oeste = { 455,35,this->surface->w,this->surface->h };
-	SDL_RenderCopy(this->renderer, this->texture, NULL, &oeste);
-	SDL_FreeSurface(this->surface);
-	SDL_DestroyTexture(this->texture);
+	
+	if(page == 0) 
+	{
+		this->surface = TTF_RenderText_Solid(this->font, // Clock message
+			"Time of the day", color);
+		this->texture = SDL_CreateTextureFromSurface(this->renderer, this->surface);
+		SDL_Rect oeste = { 455,35,this->surface->w,this->surface->h };
+		SDL_RenderCopy(this->renderer, this->texture, NULL, &oeste);
+		SDL_FreeSurface(this->surface);
+		SDL_DestroyTexture(this->texture);
+	}
+		
 
 	SDL_RenderPresent(this->renderer);
 }
@@ -124,15 +130,33 @@ void MainSDLWindow::handleEvent() // Manage Events
 
 			if (e.button.button == SDL_BUTTON_LEFT)
 			{
-				for (auto i = 0; i < this->buttonList.size(); i++)
+				for (auto i = 1; i <= this->buttonList.size(); i++)
 				{
-					if (this->mouseX > this->buttonList[i].getRect().x && this->mouseX < this->buttonList[i].getRect().x + this->buttonList[i].getRect().w && this->mouseY < this->buttonList[i].getRect().y + this->buttonList[i].getRect().h && this->mouseY > this->buttonList[i].getRect().y) //FIRST
-						this->buttonList[i].GetCubes();
+					if (this->mouseX > this->buttonList[i-1].getRect().x && this->mouseX < this->buttonList[i-1].getRect().x + this->buttonList[i-1].getRect().w && this->mouseY < this->buttonList[i-1].getRect().y + this->buttonList[i-1].getRect().h && this->mouseY > this->buttonList[i-1].getRect().y) //FIRST
+					{	
+						this->buttonList[i-1].GetCubes();
+
+						switch (i)
+						{case 1:
+
+							break;
+						case 2:
+
+							break;
+						case 3:
+
+							break;
+						case 4:
+
+							break;
+						default:
+							break;
+						}
+					}
+
 				}
+
 			}
-			break;
-		default:
-			break;
 		}
 	}
 }
@@ -144,7 +168,6 @@ MainSDLWindow::MainSDLWindow() // Window initiation
 	this->surface = NULL;
 	this->texture = NULL;
 	this->font = NULL;
-
 }
 
 MainSDLWindow::~MainSDLWindow()
