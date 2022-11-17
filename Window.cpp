@@ -3,6 +3,8 @@
 #include "Button.h"
 #include <iostream>
 #include <SDL_ttf.h>
+#include <chrono>
+#include <ctime>
 
 
 
@@ -16,11 +18,26 @@ SDL_Renderer* MainSDLWindow::GetRenderer(void) {  // Gets renderer
 
 void MainSDLWindow::createButton()
 {
-	this->buttonList.push_back(newButton::newButton(this->renderer, 20, 20, 120, 60, []() {cout << "OK1" << endl; })); //FIRST
-	this->buttonList.push_back(newButton::newButton(this->renderer, 20, 130, 120, 60, []() {cout << "OK2" << endl; })); //SECOND
-	this->buttonList.push_back(newButton::newButton(this->renderer, 20, 240, 120, 60, []() {cout << "OK3" << endl; })); //THIRD
-	this->buttonList.push_back(newButton::newButton(this->renderer, 20, 350, 120, 60, []() {cout << "OK4" << endl; })); //FOURTH
-	this->buttonList.push_back(newButton::newButton(this->renderer, 20, 460, 120, 60, []() {cout << "OK5" << endl; })); //FIFTH
+	this->buttonList.push_back(newButton::newButton(this->renderer, 20, 20, 360, 60, []() 
+		{
+		auto start = chrono::system_clock::now();
+		// Some computation here
+		auto end = chrono::system_clock::now();
+
+		chrono::duration<double> elapsed_seconds = end - start;
+		time_t end_time = chrono::system_clock::to_time_t(end);
+
+		cout << "finished computation at " << ctime(&end_time)
+			<< "elapsed time: " << elapsed_seconds.count() << "s"
+			<< endl; 
+		})); //FIRST
+	this->buttonList.push_back(newButton::newButton(this->renderer, 20, 130, 360, 60, []() {cout << "OK2" << endl; })); //SECOND
+	this->buttonList.push_back(newButton::newButton(this->renderer, 20, 240, 360, 60, []() {cout << "OK3" << endl; })); //THIRD
+	this->buttonList.push_back(newButton::newButton(this->renderer, 20, 350, 360, 60, []() {cout << "OK4" << endl; })); //FOURTH
+
+	this->buttonList.push_back(newButton::newButton(this->renderer, 400, 0, 900, 900, []() {cout << "OK5" << endl; })); //HALF MENU
+
+
 }
 
 void MainSDLWindow::render() //Renders button list
@@ -32,32 +49,65 @@ void MainSDLWindow::render() //Renders button list
 	}
 
 	this->font = TTF_OpenFont("Fonts/LTComical.ttf", 50);
-	SDL_Color color = { 85, 52, 155 };
-	this->surface = TTF_RenderText_Solid(this->font,
-		"Retarded fuck", color);
+	SDL_Color color = { 0, 0, 0 };
+	this->surface = TTF_RenderText_Solid(this->font, //Buying list
+		"Liste de course", color);
 	this->texture = SDL_CreateTextureFromSurface(this->renderer, this->surface);
-	SDL_Rect dest = { 10,510,this->surface->w,this->surface->h };
-	SDL_RenderCopy(this->renderer, this->texture, NULL,&dest );
+	SDL_Rect peste = { 35,25,this->surface->w,this->surface->h };
+	SDL_RenderCopy(this->renderer, this->texture, NULL,&peste );
 	SDL_FreeSurface(this->surface);
 	SDL_DestroyTexture(this->texture);
 
-	this->surface = TTF_RenderText_Solid(this->font,
-		"test", color);
+	this->surface = TTF_RenderText_Solid(this->font, //Product list
+		"Liste des produits", color);
 	this->texture = SDL_CreateTextureFromSurface(this->renderer, this->surface);
-	SDL_Rect test = { 100,300,this->surface->w,this->surface->h };
-	SDL_RenderCopy(this->renderer, this->texture, NULL, &test);
+	SDL_Rect reste = { 45,130,this->surface->w,this->surface->h };
+	SDL_RenderCopy(this->renderer, this->texture, NULL, &reste);
 	SDL_FreeSurface(this->surface);
 	SDL_DestroyTexture(this->texture);
 
 
-	this->surface = TTF_RenderText_Solid(this->font,
-		"pd", color);
+	this->surface = TTF_RenderText_Solid(this->font, // Timer
+		"Baby Timer", color);
 	this->texture = SDL_CreateTextureFromSurface(this->renderer, this->surface);
-	SDL_Rect veste = { 60,100,this->surface->w,this->surface->h };
+	SDL_Rect veste = { 45,240,this->surface->w,this->surface->h };
 	SDL_RenderCopy(this->renderer, this->texture, NULL, &veste);
 	SDL_FreeSurface(this->surface);
 	SDL_DestroyTexture(this->texture);
 
+	this->surface = TTF_RenderText_Solid(this->font, // Baby fed or not
+		"Baby fed", color);
+	this->texture = SDL_CreateTextureFromSurface(this->renderer, this->surface);
+	SDL_Rect leste = { 45,350,this->surface->w,this->surface->h };
+	SDL_RenderCopy(this->renderer, this->texture, NULL, &leste);
+	SDL_FreeSurface(this->surface);
+	SDL_DestroyTexture(this->texture);
+
+	this->surface = TTF_RenderText_Solid(this->font, // Time and last time baby was fed
+		"Time since last meal", color);
+	this->texture = SDL_CreateTextureFromSurface(this->renderer, this->surface);
+	SDL_Rect geste = { 430,35,this->surface->w,this->surface->h };
+	SDL_RenderCopy(this->renderer, this->texture, NULL, &geste);
+	SDL_FreeSurface(this->surface);
+	SDL_DestroyTexture(this->texture);
+
+	SDL_RenderPresent(this->renderer);
+}
+
+void MainSDLWindow::timer()
+{
+
+	SDL_RenderClear(this->renderer);
+	auto start = chrono::system_clock::now();
+	// Some computation here
+	auto end = chrono::system_clock::now();
+
+	chrono::duration<double> elapsed_seconds = end - start;
+	time_t end_time = chrono::system_clock::to_time_t(end);
+
+	cout << "finished computation at " << ctime(&end_time)
+		<< "elapsed time: " << elapsed_seconds.count() << "s"
+		<< endl;
 	SDL_RenderPresent(this->renderer);
 }
 
@@ -121,14 +171,14 @@ MainSDLWindow::~MainSDLWindow()
 
 int MainSDLWindow::Init(const char* Jesus, int width, int height)
 {
-	if (TTF_Init() == -1) {
-		printf("TTF_Init: %s\n", TTF_GetError());
-		exit(2);
-	}
 	if (SDL_Init(SDL_INIT_VIDEO) != 0)
 	{
 		printf("Erreur d'initialisation de la SDL : %s", SDL_GetError());
 		return 0;
+	}
+	if (TTF_Init() == -1) {
+		printf("TTF_Init: %s\n", TTF_GetError());
+		exit(2);
 	}
 	this->window = SDL_CreateWindow(Jesus, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_SHOWN);
 	if (this->window == NULL)
