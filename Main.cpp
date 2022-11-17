@@ -17,7 +17,7 @@ int main(int argc, char* args[])
 
     while (maFenetre.isRunning) {  // Main loop
         maFenetre.handleEvent();
-        maFenetre.render();
+        maFenetre.render(maFenetre.page);
         maFenetre.createButton();
     }
 
