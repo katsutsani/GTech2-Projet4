@@ -37,12 +37,16 @@ void product::changeQuantity(int quantity, char signe) {
 	}
 
 }
-void product::showProductName() {
-	cout << this->name << endl;
+int product::getQuantity() {
+	return this->quantity;
 }
 
 const char* product::getName() {
 	return name;
+}
+
+void product::showProductName() {
+	 cout <<name <<endl;
 }
 
 void product::changeToBuyQuantity(shoplist& shoplist,int value,const char signe) {
