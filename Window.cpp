@@ -35,7 +35,7 @@ void MainSDLWindow::render() //Renders button list
 	time(&seconds);
 	localtime_s(&instant, &seconds);
 
-	printf("%d/%d ; %d:%d:%d\n", instant.tm_mday + 1, instant.tm_mon + 1, instant.tm_hour, instant.tm_min, instant.tm_sec);
+	printf("%d:%d:%d\n", instant.tm_hour, instant.tm_min, instant.tm_sec);
 
 	string Timer = to_string(instant.tm_hour)+"H "+to_string(instant.tm_min)+"M "+to_string(instant.tm_sec)+"S ";
 
@@ -48,7 +48,7 @@ void MainSDLWindow::render() //Renders button list
 	this->font = TTF_OpenFont("Fonts/LTComical.ttf", 50);
 	SDL_Color color = { 0, 0, 0 };
 	this->surface = TTF_RenderText_Solid(this->font, //Buying list
-		"Liste de course", color);
+		"To-Buy list", color);
 	this->texture = SDL_CreateTextureFromSurface(this->renderer, this->surface);
 	SDL_Rect peste = { 35,25,this->surface->w,this->surface->h };
 	SDL_RenderCopy(this->renderer, this->texture, NULL,&peste );
@@ -56,7 +56,7 @@ void MainSDLWindow::render() //Renders button list
 	SDL_DestroyTexture(this->texture);
 
 	this->surface = TTF_RenderText_Solid(this->font, //Product list
-		"Liste des produits", color);
+		"Products list", color);
 	this->texture = SDL_CreateTextureFromSurface(this->renderer, this->surface);
 	SDL_Rect reste = { 40,135,this->surface->w,this->surface->h };
 	SDL_RenderCopy(this->renderer, this->texture, NULL, &reste);
@@ -80,7 +80,7 @@ void MainSDLWindow::render() //Renders button list
 	SDL_FreeSurface(this->surface);
 	SDL_DestroyTexture(this->texture);
 
-	this->surface = TTF_RenderText_Solid(this->font, // global timer
+	this->surface = TTF_RenderText_Solid(this->font, // Clock
 		Timer.c_str(), color);
 	this->texture = SDL_CreateTextureFromSurface(this->renderer, this->surface);
 	SDL_Rect geste = { 470,110,this->surface->w,this->surface->h };
@@ -88,7 +88,7 @@ void MainSDLWindow::render() //Renders button list
 	SDL_FreeSurface(this->surface);
 	SDL_DestroyTexture(this->texture);
 
-	this->surface = TTF_RenderText_Solid(this->font, // global timer
+	this->surface = TTF_RenderText_Solid(this->font, // Clock message
 		"Time of the day", color);
 	this->texture = SDL_CreateTextureFromSurface(this->renderer, this->surface);
 	SDL_Rect oeste = { 455,35,this->surface->w,this->surface->h };
