@@ -4,8 +4,9 @@
 #include <iostream>
 #include <SDL_ttf.h>
 #include <chrono>
-#include <ctime>
-
+#include <time.h>
+#include <string>
+#include <cstring>
 
 
 using namespace std;
@@ -18,30 +19,26 @@ SDL_Renderer* MainSDLWindow::GetRenderer(void) {  // Gets renderer
 
 void MainSDLWindow::createButton()
 {
-	this->buttonList.push_back(newButton::newButton(this->renderer, 20, 20, 360, 60, []() 
-		{
-		auto start = chrono::system_clock::now();
-		// Some computation here
-		auto end = chrono::system_clock::now();
-
-		chrono::duration<double> elapsed_seconds = end - start;
-		time_t end_time = chrono::system_clock::to_time_t(end);
-
-		cout << "finished computation at " << ctime(&end_time)
-			<< "elapsed time: " << elapsed_seconds.count() << "s"
-			<< endl; 
-		})); //FIRST
+	this->buttonList.push_back(newButton::newButton(this->renderer, 20, 20, 360, 60, []() {})); //FIRST
 	this->buttonList.push_back(newButton::newButton(this->renderer, 20, 130, 360, 60, []() {cout << "OK2" << endl; })); //SECOND
 	this->buttonList.push_back(newButton::newButton(this->renderer, 20, 240, 360, 60, []() {cout << "OK3" << endl; })); //THIRD
 	this->buttonList.push_back(newButton::newButton(this->renderer, 20, 350, 360, 60, []() {cout << "OK4" << endl; })); //FOURTH
 
 	this->buttonList.push_back(newButton::newButton(this->renderer, 400, 0, 900, 900, []() {cout << "OK5" << endl; })); //HALF MENU
-
-
 }
 
 void MainSDLWindow::render() //Renders button list
 {
+	time_t seconds;
+	struct tm instant;
+
+	time(&seconds);
+	localtime_s(&instant, &seconds);
+
+	printf("%d/%d ; %d:%d:%d\n", instant.tm_mday + 1, instant.tm_mon + 1, instant.tm_hour, instant.tm_min, instant.tm_sec);
+
+	string Timer = to_string(instant.tm_hour)+"H "+to_string(instant.tm_min)+"M "+to_string(instant.tm_sec)+"S ";
+
 	SDL_RenderClear(this->renderer);
 	for (auto i = 0; i < buttonList.size(); i++)
 	{
@@ -61,13 +58,13 @@ void MainSDLWindow::render() //Renders button list
 	this->surface = TTF_RenderText_Solid(this->font, //Product list
 		"Liste des produits", color);
 	this->texture = SDL_CreateTextureFromSurface(this->renderer, this->surface);
-	SDL_Rect reste = { 45,130,this->surface->w,this->surface->h };
+	SDL_Rect reste = { 40,135,this->surface->w,this->surface->h };
 	SDL_RenderCopy(this->renderer, this->texture, NULL, &reste);
 	SDL_FreeSurface(this->surface);
 	SDL_DestroyTexture(this->texture);
 
 
-	this->surface = TTF_RenderText_Solid(this->font, // Timer
+	this->surface = TTF_RenderText_Solid(this->font, // Baby timer since last meal
 		"Baby Timer", color);
 	this->texture = SDL_CreateTextureFromSurface(this->renderer, this->surface);
 	SDL_Rect veste = { 45,240,this->surface->w,this->surface->h };
@@ -83,11 +80,19 @@ void MainSDLWindow::render() //Renders button list
 	SDL_FreeSurface(this->surface);
 	SDL_DestroyTexture(this->texture);
 
-	this->surface = TTF_RenderText_Solid(this->font, // Time and last time baby was fed
-		"Time since last meal", color);
+	this->surface = TTF_RenderText_Solid(this->font, // global timer
+		Timer.c_str(), color);
 	this->texture = SDL_CreateTextureFromSurface(this->renderer, this->surface);
-	SDL_Rect geste = { 430,35,this->surface->w,this->surface->h };
+	SDL_Rect geste = { 470,110,this->surface->w,this->surface->h };
 	SDL_RenderCopy(this->renderer, this->texture, NULL, &geste);
+	SDL_FreeSurface(this->surface);
+	SDL_DestroyTexture(this->texture);
+
+	this->surface = TTF_RenderText_Solid(this->font, // global timer
+		"Time of the day", color);
+	this->texture = SDL_CreateTextureFromSurface(this->renderer, this->surface);
+	SDL_Rect oeste = { 455,35,this->surface->w,this->surface->h };
+	SDL_RenderCopy(this->renderer, this->texture, NULL, &oeste);
 	SDL_FreeSurface(this->surface);
 	SDL_DestroyTexture(this->texture);
 
@@ -96,19 +101,6 @@ void MainSDLWindow::render() //Renders button list
 
 void MainSDLWindow::timer()
 {
-
-	SDL_RenderClear(this->renderer);
-	auto start = chrono::system_clock::now();
-	// Some computation here
-	auto end = chrono::system_clock::now();
-
-	chrono::duration<double> elapsed_seconds = end - start;
-	time_t end_time = chrono::system_clock::to_time_t(end);
-
-	cout << "finished computation at " << ctime(&end_time)
-		<< "elapsed time: " << elapsed_seconds.count() << "s"
-		<< endl;
-	SDL_RenderPresent(this->renderer);
 }
 
 void MainSDLWindow::handleEvent() // Manage Events
